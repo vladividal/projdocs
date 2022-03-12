@@ -16,6 +16,7 @@ class skillCategory(models.Model):
     name = models.CharField(max_length=50,verbose_name='Name or description')
     code = models.CharField(max_length=10,verbose_name='Code')
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Skill Category'
@@ -33,6 +34,7 @@ class Skill(models.Model):
     code = models.CharField(max_length=10,verbose_name='Code')
     skill_category = models.ForeignKey(skillCategory, default=2, on_delete = models.CASCADE, verbose_name='Category')
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Skill'
@@ -49,6 +51,7 @@ class Language(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Language'
@@ -65,6 +68,7 @@ class Level(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Experience Level'        
@@ -81,6 +85,7 @@ class educationLevel(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Education Level'        
@@ -104,6 +109,7 @@ class Education(models.Model):
     inserted_at = models.DateTimeField(auto_now_add=True)
     is_certification = models.BooleanField(default=False, verbose_name='Certification?')
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Education '
@@ -119,7 +125,8 @@ class Education(models.Model):
 class contractType(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)  
-    inserted_at = models.DateTimeField(auto_now_add=True)     
+    inserted_at = models.DateTimeField(auto_now_add=True)  
+    is_deleted = models.BooleanField(default=False)       
 
     class Meta:
         verbose_name = 'Contract Type'
@@ -150,6 +157,7 @@ class Account(models.Model):
     end_date = models.DateField(null=True, blank=True)
     observations = models.TextField(null=True, blank=True)
     inserted_at = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Account'
@@ -166,7 +174,8 @@ class Account(models.Model):
 class experienceCategory(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)  
-    inserted_at = models.DateTimeField(auto_now_add=True)     
+    inserted_at = models.DateTimeField(auto_now_add=True)    
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Experience Category'
@@ -184,6 +193,7 @@ class Role(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)  
     inserted_at = models.DateTimeField(auto_now_add=True)     
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Role'        
@@ -200,7 +210,8 @@ class Role(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)  
-    inserted_at = models.DateTimeField(auto_now_add=True)     
+    inserted_at = models.DateTimeField(auto_now_add=True)   
+    is_deleted = models.BooleanField(default=False)      
 
     class Meta:
         verbose_name = 'Tag'        
@@ -219,6 +230,7 @@ class socialNetwork(models.Model):
     code = models.CharField(max_length=30)
     image_url = models.CharField(max_length=300)
     inserted_at = models.DateTimeField(auto_now_add=True)     
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Social Network'
@@ -249,6 +261,7 @@ class Profile(models.Model):
     is_your_main = models.BooleanField(default=False)
     updated_at = models.DateField()
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Professional Profile'
@@ -274,6 +287,7 @@ class profileExperience(models.Model):
     is_current = models.BooleanField(default=False)
     short_comments = models.TextField(null=True, blank=True)
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Experience'
@@ -293,6 +307,7 @@ class profileExperienceItens(models.Model):
     experience_category = models.ForeignKey(experienceCategory, on_delete=models.CASCADE )
     sequence = models.IntegerField()
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Experience Item'
@@ -313,6 +328,7 @@ class profileSocialLinks(models.Model):
     social_url = models.CharField(max_length=300)
     short_comments = models.TextField(null=True, blank=True)
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Social Link'
@@ -330,6 +346,7 @@ class profileSkills(models.Model):
     profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE )
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Skill'
@@ -353,6 +370,7 @@ class profileEducation(models.Model):
     date_end = models.DateField()    
     description = models.TextField(null=True, blank=True)
     inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Education'

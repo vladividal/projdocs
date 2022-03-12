@@ -80,7 +80,8 @@ class Project(models.Model):
     budget_value = models.DecimalField(max_digits=15, decimal_places=2)   
     description = models.TextField(null=True, blank=True,verbose_name='Project descriprion')
     goals = models.TextField(null=True, blank=True,verbose_name='Expected Goals') 
-    inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)    
+    inserted_at = models.DateTimeField(auto_now_add=True)    
 
     class Meta:
         verbose_name = 'Project'
