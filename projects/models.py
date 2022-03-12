@@ -91,3 +91,24 @@ class Project(models.Model):
     
     def __str__(self):
         return self.name
+
+# ---------------------------------------------------------------------------------
+class projectModule(models.Model):
+    project = models.ForeignKey(Project, on_delete = models.CASCADE, verbose_name='Project') 
+    name = models.CharField(max_length=100,verbose_name='Module Name')
+    description = models.TextField(null=True, blank=True,verbose_name='Module descriprion')
+    sequence = models.IntegerField(verbose_name='Sequence')
+    inserted_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Project Module'
+        verbose_name_plural = 'Project Modules'
+        ordering = ['name']         
+        managed = True
+        db_table = 't_project_module'
+    
+    def __str__(self):
+        return self.name
+
+

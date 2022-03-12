@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import linkType, businessArea, industry, Project, projectStatus
+from .models import linkType, businessArea, industry, Project, projectModule, projectStatus
 
 class adminBusinessArea( admin.ModelAdmin):
     list_display = ('name', 'code')
@@ -44,3 +44,12 @@ class adminProject( admin.ModelAdmin):
     list_filter = ('name','business_area', 'industry')
 
 admin.site.register(Project, adminProject)
+
+# ---------------------------------------------------------------------------------
+class adminProjectModule( admin.ModelAdmin):
+    list_display = ('name', 'sequence')
+    search_fields = ('name',)
+    list_per_page = 12
+    list_filter = ('name',)
+
+admin.site.register(projectModule, adminProjectModule)

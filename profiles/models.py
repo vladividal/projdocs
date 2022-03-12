@@ -292,7 +292,6 @@ class profileExperienceItens(models.Model):
     item_description = models.TextField(null=True, blank=True)
     experience_category = models.ForeignKey(experienceCategory, on_delete=models.CASCADE )
     sequence = models.IntegerField()
-
     inserted_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
