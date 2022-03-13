@@ -99,6 +99,7 @@ class educationLevel(models.Model):
 
 # ---------------------------------------------------------------------------------
 class Education(models.Model):
+    
     education_level = models.ForeignKey(educationLevel, on_delete = models.CASCADE, verbose_name='Education Level')
     education_title = models.CharField(max_length=200, verbose_name='Title')
     institution_name = models.CharField(max_length=200, verbose_name='Institution Name')
