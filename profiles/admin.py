@@ -118,11 +118,27 @@ class adminEducation( admin.ModelAdmin):
 
 admin.site.register(Education, adminEducation)
 
+admin.site.register(experienceCategory)
+admin.site.register(profileExperience)
+admin.site.register(profileSkills)
+admin.site.register(profileSocialLinks)
+admin.site.register(profileEducation)
+admin.site.register(profileExperienceItens) 
+
 #-------------------------------------------------------------------------
-class skillsInline(admin.TabularInline):
+class InlineProfileSkills(admin.TabularInline):
     model = profileSkills
     fields = ('profile','skill')
     extra = 1
+
+class InLineProfileExperience(admin.StackedInline):
+#class InLineEducation(admin.TabularInline):
+	model = profileExperience
+	extra = 1
+
+class InLineProfileSocialLinks(admin.TabularInline):
+	model = profileSocialLinks
+	extra = 1
 
 class adminProfile( admin.ModelAdmin):
     list_display = ('title', 'role', 'level', 'is_active', 'is_your_main', 'updated_at' )
@@ -132,19 +148,12 @@ class adminProfile( admin.ModelAdmin):
     fields = ('account','title','banner','bio',('location','phone'),('email','website'),('language','role'),('level'),
     ('is_active', 'is_your_main'),'updated_at','tag' )
 
-inLines = (skillsInline,)
+    inlines = [InlineProfileSkills, InLineProfileSocialLinks, InLineProfileExperience]
 
 admin.site.register(Profile, adminProfile)
 
 
-#-------------------------------------------------------------------------
-#admin.site.register(Profile)
 
-admin.site.register(experienceCategory)
-admin.site.register(profileExperience)
-admin.site.register(profileSkills)
-admin.site.register(profileSocialLinks)
-admin.site.register(profileEducation)
-admin.site.register(profileExperienceItens) 
+
 
 

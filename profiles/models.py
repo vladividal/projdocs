@@ -1,4 +1,5 @@
 
+from typing import Sequence
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin 
@@ -99,7 +100,7 @@ class educationLevel(models.Model):
 
 # ---------------------------------------------------------------------------------
 class Education(models.Model):
-    
+
     education_level = models.ForeignKey(educationLevel, on_delete = models.CASCADE, verbose_name='Education Level')
     education_title = models.CharField(max_length=200, verbose_name='Title')
     institution_name = models.CharField(max_length=200, verbose_name='Institution Name')
@@ -327,7 +328,6 @@ class profileSocialLinks(models.Model):
     profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
     social_network = models.ForeignKey(socialNetwork, on_delete=models.CASCADE )
     social_url = models.CharField(max_length=300)
-    short_comments = models.TextField(null=True, blank=True)
     inserted_at = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)    
 
@@ -338,21 +338,22 @@ class profileSocialLinks(models.Model):
         managed = True
         db_table = 't_profile_social_link'
     
-    def __str__(self):
-        return self.role
+ #   def __str__(self):
+ #      return self.social_network
 
 # ---------------------------------------------------------------------------------
 
 class profileSkills(models.Model):
     profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE )
+    sequence = models.IntegerField(default=1)    
     inserted_at = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Skill'
         verbose_name_plural = 'Profile Skills'
-        ordering = ['skill'] 
+        ordering = ['sequence'] 
         managed = True
         db_table = 't_profile_skill'
     
@@ -362,23 +363,21 @@ class profileSkills(models.Model):
 # ---------------------------------------------------------------------------------
 
 class profileEducation(models.Model):
-    profile = models.ForeignKey(Profile, on_delete = models.CASCADE)    
-    education_level = models.ForeignKey(educationLevel, on_delete = models.CASCADE)
-    education_title = models.CharField(max_length=200)    
-    institution_name = models.CharField(max_length=200)        
-    institution_url = models.CharField(max_length=300)
-    date_start = models.DateField()
-    date_end = models.DateField()    
-    description = models.TextField(null=True, blank=True)
+    profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    education = models.ForeignKey(Education, on_delete = models.CASCADE) 
+    sequence = models.IntegerField()
+    observations = models.CharField(max_length=300) 
     inserted_at = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)    
 
     class Meta:
         verbose_name = 'Profile Education'
         verbose_name_plural = 'Profile Education'
-        ordering = ['date_start'] 
+        ordering = ['sequence'] 
         managed = True
-        db_table = 't_profile_education'
+        db_table = 't_profile_educations'
     
     def __str__(self):
-        return self.education_title
+        return self.observations
+
+
