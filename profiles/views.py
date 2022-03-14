@@ -3,7 +3,9 @@ from django.http import HttpResponse
 
 def profiles_home(request):
      return render(request, 'profiles/profiles_home.html')
-#    return HttpResponse('Profiles Home')
+
+def profiles_list(request):
+     return render(request, 'profiles/profiles_list.html')
 
 def profiles_education(request):
      return render(request, 'profiles/profiles_education.html')    

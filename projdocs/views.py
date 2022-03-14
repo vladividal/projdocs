@@ -17,3 +17,7 @@ def blog(request):
 def about(request):
  # return HttpResponse('About Page')
  return render(request,'about.html')
+
+def login(request):
+ # return HttpResponse('About Page')
+ return render(request,'login.html')
