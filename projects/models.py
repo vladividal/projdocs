@@ -1,38 +1,5 @@
 from django.db import models
-
-# ---------------------------------------------------------------------------------
-class industry(models.Model):
-    name = models.CharField(max_length=50,verbose_name='Name or description')
-    code = models.CharField(max_length=10,verbose_name='Code')
-    inserted_at = models.DateTimeField(auto_now_add=True)
-    is_deleted = models.BooleanField(default=False)
-
-    class Meta:
-        verbose_name = 'Industry'
-        verbose_name_plural = 'Industries'
-        ordering = ['name']         
-        managed = True
-        db_table = 't_industry'
-    
-    def __str__(self):
-        return self.name
-
-# ---------------------------------------------------------------------------------
-class businessArea(models.Model):
-    name = models.CharField(max_length=50,verbose_name='Name or description')
-    code = models.CharField(max_length=10,verbose_name='Code')
-    inserted_at = models.DateTimeField(auto_now_add=True)
-    is_deleted = models.BooleanField(default=False)
-
-    class Meta:
-        verbose_name = 'Business Area'
-        verbose_name_plural = 'Business Areas'
-        ordering = ['name']         
-        managed = True
-        db_table = 't_business_area'
-    
-    def __str__(self):
-        return self.name
+from infocore.models import industry, businessArea
 
 # ---------------------------------------------------------------------------------
 class linkType(models.Model):
